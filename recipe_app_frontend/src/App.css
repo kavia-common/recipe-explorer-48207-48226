@@ -1,104 +1,133 @@
-/* CSS Variables for Theme Management */
+/* Ocean Professional Theme CSS Variables */
 :root {
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
-}
-
-[data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
+  --primary: #2563EB;
+  --secondary: #F59E0B;
+  --success: #F59E0B;
+  --error: #EF4444;
+  --gradient: linear-gradient(90deg, rgba(37,99,235,0.10) 0%, #f9fafb 100%);
+  --background: #f9fafb;
+  --surface: #ffffff;
+  --text: #111827;
+  --border: #e0e7ef;
 }
 
 .App {
   text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+  background-color: var(--background);
+  color: var(--text);
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: "Roboto", "Segoe UI", Arial, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color .2s ease;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+a:hover {
+  color: var(--secondary);
 }
 
-.App-header {
-  background-color: var(--bg-secondary);
-  min-height: 100vh;
+/* Recipe Grid & Cards */
+.recipe-list-grid {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
+  gap: 18px;
+  margin: 0 auto;
 }
 
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
-}
-
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 600;
+.recipe-card {
+  background: var(--surface);
+  border-radius: 18px;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.07), 0 4px 24px rgba(37,99,235,0.04);
+  padding: 1.2rem;
+  margin: 10px;
+  min-width: 225px;
+  max-width: 320px;
+  flex: 1 1 220px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1.5px solid var(--border);
+  transition: box-shadow 0.2s cubic-bezier(0.53,0.21,0.29,0.80);
 }
 
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
+.recipe-card:hover {
+  box-shadow: 0 8px 24px rgba(37,99,235,0.09);
+  border-color: var(--primary);
 }
 
-.theme-toggle:active {
-  transform: translateY(0);
+.recipe-card img {
+  width: 100%;
+  height: 184px;
+  object-fit: cover;
+  border-radius: 13px;
+  margin-bottom: 16px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+input[type="text"], .recipe-modal input, .search-bar input {
+  border: 1.5px solid var(--primary);
+  border-radius: 16px;
+  outline: 0;
+  padding: 0.95rem 1.6rem;
+  font-size: 1rem;
+  background: var(--surface);
+  color: var(--text);
+  margin-top: 12px;
+  transition: box-shadow 0.18s, border .18s;
+}
+
+input[type="text"]:focus {
+  box-shadow: 0 1px 5px rgba(37,99,235,0.05);
+  border-color: var(--secondary);
+}
+
+/* Detail Modal */
+.recipe-modal {
+  background: var(--surface);
+  border-radius: 18px;
+  padding: 2rem 1.5rem 1rem 1.5rem;
+  box-shadow: 0 4px 32px rgba(37,99,235,0.19), 0 2px 10px rgba(245,158,11,0.09);
+}
+
+@media (max-width: 980px) {
+  .recipe-card {
+    flex: 1 1 170px;
+    min-width: 155px;
+    max-width: 98vw;
+    padding: 1rem;
   }
-  to {
-    transform: rotate(360deg);
+  .recipe-modal {
+    padding: 1.2rem 0.6rem 0.7rem 0.6rem;
   }
 }
 
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
+@media (max-width: 600px) {
+  .recipe-list-grid {
+    flex-direction: column;
+    align-items: center;
   }
+  .recipe-card {
+    min-width: 91vw;
+    max-width: 95vw;
+    padding: 0.7rem;
+  }
+}
+
+/* Utility classes for minimalist/modern Ocean Professional look */
+.ocean-shadow {
+  box-shadow: 0 2px 8px rgba(37,99,235,0.07), 0 4px 24px rgba(37,99,235,0.04);
+}
+.ocean-radius {
+  border-radius: 16px;
+}
+
+::-webkit-scrollbar {
+  height: .5em;
+  width: .5em;
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: #dee7fb;
+  border-radius: 9px;
 }
